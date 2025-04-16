@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter mochawesome",
+    "test": "mocha --reporter mochawesome", 
     "coverage": "c8 --reporter=html --reporter=text mocha"
   },
   "repository": {
