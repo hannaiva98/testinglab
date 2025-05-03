@@ -3,11 +3,7 @@ stages:
 
 lint:
   stage: lint
-  image: node:14
+  image: node:16
   script:
     - npm install
-    - npx eslint . --ext .js
-  only:
-    - master
-    - main
-    - practice
+    - npx eslint .
