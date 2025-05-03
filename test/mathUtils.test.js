@@ -26,7 +26,7 @@ describe('mathUtils', () => {
     });
 
     it('should throw an error when dividing by zero', () => {
-      expect(() => divide(10, 0)).to.throw("Cannot divide by zero");
+      expect(() => divide(10, 0)).to.throw('Cannot divide by zero');
     });
   });
 });

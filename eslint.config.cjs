@@ -1,17 +1,17 @@
-const js = require('@eslint/js');
-
 module.exports = [
-  js.configs.recommended,
   {
     languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
       globals: {
-        console: 'readonly', 
-      },
+        describe: 'readonly',
+        it: 'readonly'
+      }
     },
     rules: {
-      semi: ['error', 'always'],
       quotes: ['error', 'single'],
-      'no-undef': 'error',
-    },
-  },
+      semi: ['error', 'always'],
+      indent: ['error', 2]
+    }
+  }
 ];

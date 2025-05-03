@@ -1,7 +1,7 @@
 
 export function findMax(arr) {
   if (!Array.isArray(arr)) {
-    throw new Error("Input must be an array");
+    throw new Error('Input must be an array');
   }
   return Math.max(...arr);
 }
