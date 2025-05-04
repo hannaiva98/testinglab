@@ -2,9 +2,17 @@ stages:
   - lint
   - test
 
+cache:
+  paths:
+    - node_modules/
+
 lint:
   stage: lint
   image: node:16
+  cache:
+    - key: node-modules
+      paths:
+        - node_modules/
   script:
     - npm ci
     - npx eslint .
@@ -15,6 +23,10 @@ lint:
 test:
   stage: test
   image: node:16
+  cache:
+    - key: node-modules
+      paths:
+        - node_modules/
   script:
     - npm ci
     - npm test
