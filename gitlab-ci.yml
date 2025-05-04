@@ -1,0 +1,23 @@
+stages:
+  - lint
+  - test
+
+lint:
+  stage: lint
+  image: node:16
+  script:
+    - npm ci
+    - npx eslint .
+  only:
+    - practice
+    - main
+
+test:
+  stage: test
+  image: node:16
+  script:
+    - npm ci
+    - npm test
+  only:
+    - practice
+    - main
