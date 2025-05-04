@@ -11,7 +11,8 @@ module.exports = [
     rules: {
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
-      indent: ['error', 2]
+      indent: ['error', 2],
+      'constructor-super': 'off',
     }
   }
 ];
