@@ -8,28 +8,36 @@ cache:
 
 lint:
   stage: lint
-  image: node:16
+  image: node:18
   cache:
-    - key: node-modules
-      paths:
-        - node_modules/
+    key: ${CI_COMMIT_REF_SLUG}-node-modules
+    paths:
+      - node_modules/
   script:
     - npm ci
     - npx eslint .
   only:
-    - practice
-    - main
+    refs:
+      - practice
+      - main
+      - merge_requests
+    changes:
+      - "**/*.js"
 
 test:
   stage: test
-  image: node:16
+  image: node:18
   cache:
-    - key: node-modules
-      paths:
-        - node_modules/
+    key: ${CI_COMMIT_REF_SLUG}-node-modules
+    paths:
+      - node_modules/
   script:
     - npm ci
     - npm test
   only:
-    - practice
-    - main
+    refs:
+      - practice
+      - main
+      - merge_requests
+    changes:
+      - "**/*.js"
