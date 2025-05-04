@@ -1,12 +1,12 @@
 module.exports = {
-  files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
-  languageOptions: {
+  env: {
+    browser: true,
+    node: true,
+    es2021: true,
+  },
+  parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
-    globals: {
-      browser: true,
-      node: true,
-    },
   },
   rules: {
     // Code style
