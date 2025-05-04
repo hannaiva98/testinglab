@@ -2,13 +2,17 @@ stages:
   - lint
   - test
 
+variables:
+  NODE_VERSION: "18"
+
 cache:
+  key: ${CI_COMMIT_REF_SLUG}-node-modules
   paths:
     - node_modules/
 
 lint:
   stage: lint
-  image: node:18
+  image: node:$NODE_VERSION
   cache:
     key: ${CI_COMMIT_REF_SLUG}-node-modules
     paths:
@@ -16,17 +20,15 @@ lint:
   script:
     - npm ci
     - npx eslint .
-  only:
-    refs:
-      - practice
-      - main
-      - merge_requests
-    changes:
-      - "**/*.js"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+    - if: '$CI_COMMIT_BRANCH == "practice" || $CI_COMMIT_BRANCH == "main"'
+      changes:
+        - "**/*.js"
 
 test:
   stage: test
-  image: node:18
+  image: node:$NODE_VERSION
   cache:
     key: ${CI_COMMIT_REF_SLUG}-node-modules
     paths:
@@ -34,10 +36,8 @@ test:
   script:
     - npm ci
     - npm test
-  only:
-    refs:
-      - practice
-      - main
-      - merge_requests
-    changes:
-      - "**/*.js"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+    - if: '$CI_COMMIT_BRANCH == "practice" || $CI_COMMIT_BRANCH == "main"'
+      changes:
+        - "**/*.js"
